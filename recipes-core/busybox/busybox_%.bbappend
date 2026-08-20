@@ -5,9 +5,3 @@ SRC_URI += " \
             file://rdkb.cfg \
            "
 
-do_install:append() {
-	rm ${D}${sysconfdir}/syslog.conf
-}
-
-FILES:${PN}-syslog:remove = "${sysconfdir}/syslog.conf"
-

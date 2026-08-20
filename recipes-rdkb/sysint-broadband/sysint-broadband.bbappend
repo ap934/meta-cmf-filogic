@@ -1,5 +1,5 @@
 SRC_URI:append = " \
-    ${CMF_GIT_ROOT}/rdkb/devices/raspberrypi/sysint;module=.;protocol=${CMF_GIT_PROTOCOL};branch=${CMF_GIT_BRANCH};destsuffix=git/devicerpi;name=sysintdevicerpi \
+    ${CMF_GIT_ROOT}/rdkb/devices/raspberrypi/sysint;module=.;protocol=${CMF_GIT_PROTOCOL};branch=${CMF_GIT_BRANCH};destsuffix=${BP}/devicerpi;name=sysintdevicerpi \
 "
 SRCREV_sysintdevicerpi = "${AUTOREV}"
 SRCREV_FORMAT = "sysintgeneric_sysintdevicerpi"
