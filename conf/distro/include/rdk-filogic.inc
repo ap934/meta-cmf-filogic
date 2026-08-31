@@ -28,6 +28,8 @@ DISTRO_FEATURES:append_broadband = " WanFailOverSupportEnable"
 DISTRO_FEATURES:append_kirkstone = " kirkstone"
 DISTRO_FEATURES_NATIVE:append_kirkstone = " kirkstone"
 
+DISTRO_FEATURES:append_wrynose = " wrynose"
+DISTRO_FEATURES_NATIVE:append_wrynose = " wrynose"
 DISTRO_FEATURES:append = " meshwifi"
 DISTRO_FEATURES:append = " ipv6"
 DISTRO_FEATURES:append = " rdkb_wan_manager"
@@ -39,6 +41,6 @@ DISTRO_FEATURES:append = " three_gmac"
 HOSTTOOLS += " python"
 
 #Disable rdm-agent for reference platform
-DISTRO_FEATURES_append = " RDM"
-DISTRO_FEATURES_append = " rrd"
+DISTRO_FEATURES:append = " RDM"
+DISTRO_FEATURES:append = " rrd"
 

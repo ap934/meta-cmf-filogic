@@ -34,19 +34,19 @@ do_filogic_patches() {
     cd ${S}
     if [ ! -e filogic_patch_applied ]; then
         bbnote "Patching 0001-fix-lan-handler-for-filogic.patch"
-        patch -p1 < ${WORKDIR}/0001-fix-lan-handler-for-filogic.patch
+        patch -p1 < ${UNPACKDIR}/0001-fix-lan-handler-for-filogic.patch
 
         bbnote "Patching posix-gwprovapp.patch"
-        patch -p1 < ${WORKDIR}/posix-gwprovapp.patch
+        patch -p1 < ${UNPACKDIR}/posix-gwprovapp.patch
 
         bbnote "Patching 0002-fix-swctl-missing-api.patch"
-        patch -p1 < ${WORKDIR}/0002-fix-swctl-missing-api.patch
+        patch -p1 < ${UNPACKDIR}/0002-fix-swctl-missing-api.patch
 
         bbnote "Patching firewall-secure-onboard.patch"
-        patch -p1 < ${WORKDIR}/firewall-secure-onboard.patch || echo "ERROR or Patch already applied"
+        patch -p1 < ${UNPACKDIR}/firewall-secure-onboard.patch || echo "ERROR or Patch already applied"
 
 	bbnote "Patching 0004-enable-sshd-by-default-at-bootup.patch"
-        patch -p1 < ${WORKDIR}/0004-enable-sshd-by-default-at-bootup.patch
+        patch -p1 < ${UNPACKDIR}/0004-enable-sshd-by-default-at-bootup.patch
 
         touch filogic_patch_applied
     fi
@@ -55,7 +55,7 @@ do_filogic_patches() {
 do_filogic_patches-append() {
     cd ${S}
     if [ ! -e dunfell_filogic_patch_applied ]; then
-	patch -p1 < ${WORKDIR}/0001-Work-around-for-brlan0-issue.patch
+	patch -p1 < ${UNPACKDIR}/0001-Work-around-for-brlan0-issue.patch
     fi
     touch dunfell_filogic_patch_applied
 }
@@ -114,9 +114,9 @@ do_install:append() {
     install -m 755 ${S}/source/scripts/init/system/need_wifi_default.sh ${D}${sysconfdir}/utopia/
     touch ${D}${sysconfdir}/dhcp_static_hosts
     #filogic uses default service_bridge.sh for now
-    install -m 755 ${WORKDIR}/service_bridge_mtk.sh ${D}${sysconfdir}/utopia/service.d/service_bridge.sh
+    install -m 755 ${UNPACKDIR}/service_bridge_mtk.sh ${D}${sysconfdir}/utopia/service.d/service_bridge.sh
 
-    install -m 755 ${WORKDIR}/dhcp_script.sh ${D}${sysconfdir}/
+    install -m 755 ${UNPACKDIR}/dhcp_script.sh ${D}${sysconfdir}/
     
     #change default log level to 8
     sed -i 's/level=6/level=8/g'  ${D}${sbindir}/log_start.sh
@@ -157,7 +157,7 @@ do_install:append() {
     ln -sf /etc/syslog.conf.utopia ${D}/fss/gw/etc/syslog.conf.utopia
     ln -sf /etc/utopia/service.d/misc_handler.sh ${D}/fss/gw/etc/utopia/service.d/misc_handler.sh
 
-    install -m 755 ${WORKDIR}/system_defaults ${D}${sysconfdir}/utopia/system_defaults
+    install -m 755 ${UNPACKDIR}/system_defaults ${D}${sysconfdir}/utopia/system_defaults
     sed -i -e "s/ifconfig wan0/ifconfig erouter0/g" ${D}/etc/utopia/service.d/service_sshd.sh
     sed -i -e "s/dropbear -E -s -b \/etc\/sshbanner.txt/dropbear -R -E /g" ${D}/etc/utopia/service.d/service_sshd.sh
     sed -i -e "/dropbear -R -E  -a -r/s/$/ -B/" ${D}${sysconfdir}/utopia/service.d/service_sshd.sh
