@@ -14,7 +14,7 @@ do_filogic_patches() {
     cd ${S}
 
     if ${@bb.utils.contains( 'DISTRO_FEATURES', '2022q3_support', 'true', 'false', d)}; then
-        patch -p1 < ${WORKDIR}/Fix-ccsp-cm-agent-build-error.patch
+        patch -p1 < ${UNPACKDIR}/Fix-ccsp-cm-agent-build-error.patch
         touch filogic_patch_applied
     fi
 }

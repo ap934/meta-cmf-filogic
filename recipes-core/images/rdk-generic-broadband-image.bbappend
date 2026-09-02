@@ -30,7 +30,7 @@ IMAGE_INSTALL += " \
     util-linux-readprofile \    
     iputils \ 
     bc \
-    ${@bb.utils.contains('DISTRO_FEATURES','kirkstone','','python-core',d)} \ 
+    ${@bb.utils.contains_any('DISTRO_FEATURES','kirkstone wrynose','','python-core',d)} \ 
     dosfstools \
     pptp-linux \
     rp-pppoe  \  
@@ -127,7 +127,11 @@ python do_hash_rootfs (){
     deploy_path = d.getVar('IMGDEPLOYDIR', d, 1)
     PN = d.getVar('PN', d, 1)
     MACHINE = d.getVar('MACHINE', d, 1)
-    SQUASHFS_FILE_PATH="%s/%s-%s.squashfs-xz" %(deploy_path, PN, MACHINE)    
+    IMAGE_LINK_NAME = d.getVar('IMAGE_LINK_NAME', d, 1)
+    if IMAGE_LINK_NAME:
+        SQUASHFS_FILE_PATH="%s/%s.squashfs-xz" %(deploy_path, IMAGE_LINK_NAME)
+    else:
+        SQUASHFS_FILE_PATH="%s/%s-%s.squashfs-xz" %(deploy_path, PN, MACHINE)    
     DEPLOY_DIR_IMAGE = d.getVar('DEPLOY_DIR_IMAGE', d, 1)
     SUMMARY_FILE="%s/hash-summary" %(DEPLOY_DIR_IMAGE)
     FILE_SIZE = os.path.getsize(SQUASHFS_FILE_PATH) 
