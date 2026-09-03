@@ -23,13 +23,13 @@ DISTRO_FEATURES:append = " core-net-lib"
 #DISTRO_FEATURES:append_broadband = " dhcp_manager"
 
 # Fix MeshAgent build errors
-DISTRO_FEATURES:append_broadband = " WanFailOverSupportEnable"
+DISTRO_FEATURES:append:broadband = " WanFailOverSupportEnable"
 
 DISTRO_FEATURES:append_kirkstone = " kirkstone"
 DISTRO_FEATURES_NATIVE:append_kirkstone = " kirkstone"
 
-DISTRO_FEATURES:append_wrynose = " wrynose"
-DISTRO_FEATURES_NATIVE:append_wrynose = " wrynose"
+DISTRO_FEATURES:append:wrynose = " wrynose "
+DISTRO_FEATURES_NATIVE:append:wrynose = " wrynose "
 DISTRO_FEATURES:append = " meshwifi"
 DISTRO_FEATURES:append = " ipv6"
 DISTRO_FEATURES:append = " rdkb_wan_manager"

@@ -11,7 +11,7 @@ do_filogic_patches() {
     cd ${S}
 
     if [ ! -e filogic_patch_applied ] && ([ "${PROJECT_BRANCH}" = "rdkb-2024q1-dunfell" ] || [ "${PROJECT_BRANCH}" = "rdkb-2024q1-kirkstone" ]); then
-        patch -p1 < ${WORKDIR}/Fix-ccsp-eth-agent-build-error.patch
+        patch -p1 < ${UNPACKDIR}/Fix-ccsp-eth-agent-build-error.patch
         touch filogic_patch_applied
     fi
 }
